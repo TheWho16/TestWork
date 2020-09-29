@@ -1,0 +1,56 @@
+.userCard{
+
+
+    .user__andress {
+        display       : flex;
+        flex-direction: column-reverse;
+    }
+
+    .ant-typography {
+        display        : flex;
+        flex-direction : row-reverse;
+        justify-content: flex-end;
+
+    }
+
+    .ant-card-head {
+        padding: 0;
+    }
+
+    .ant-typography-copy {
+        margin-right: 5%;
+    }
+
+}
+
+.userCard {
+    // margin-left: 3%;
+    // margin-right: 3%;
+    margin-bottom: 1.5%;
+}
+
+.user__title {
+    .ant-card-body {
+        display: none;
+    }
+
+    $this: &;
+
+    &__wraper {
+        display    : -webkit-box;
+        font-weight: 500;
+        font-size  : 16px;
+        white-space: nowrap;
+    }
+
+    &__p {
+        margin-right: 1%;
+        color       : #1890ff;
+    }
+
+    &__small {
+        font-size: 80%;
+        color    : rgba(0, 0, 0, .45);
+
+    }
+}
