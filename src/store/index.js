@@ -6,9 +6,11 @@ import { ALLOW_WINDOW_EXTENDS, ALLOW_REDUX_DEVTOOLS_EXTENSION } from 'constants/
 import { history } from 'routes/history';
 import { createRootReducer } from './root-reducer';
 import { rootSaga } from './root-saga';
+import thunk from 'redux-thunk'
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxMiddleware = applyMiddleware(
+	thunk,
 	sagaMiddleware,
 	routerMiddleware(history),
 );

@@ -11,7 +11,7 @@ const UserItemPage = (props) => {
 
 	const { page, users } = props
 	useEffect(() => {
-		// props.getAllUserThunk(page, users)
+		props.getAllUserThunk(page, users)
 	}, [props]);
 
 	
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 	}
 };
 
-const mapDispatchToProps = getAllUserThunk(2,6)
+const mapDispatchToProps = {getAllUserThunk}
 
 
 
