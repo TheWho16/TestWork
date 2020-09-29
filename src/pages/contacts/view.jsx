@@ -8,7 +8,6 @@ const View = () => {
 
 
 	const onChange=(pageNumber)=>{
-		console.log('pageNumber',pageNumber)
 		setpage(pageNumber)
 	}
 
