@@ -3,23 +3,16 @@ import UserItemFn from '../userItem/index'
 import './style.scss';
 import { Row } from 'antd';
 const View = (props) => {
-    const [data, setdata] = useState(null);
 
 
-    useEffect(() => {
-        setdata(props.usersData)
-        console.log('ViewProps', props)
-
-    }, [props]);
-
-    if (data == null) {
+    if (props.usersData == null) {
         return (
             <div>
                 loader
             </div>
         )
     }
-    let userItems = data.map(i => <UserItemFn data={i} key={i.id} />);
+    let userItems = props.usersData.map(i => <UserItemFn data={i} key={i.id} />);
 
 
 
