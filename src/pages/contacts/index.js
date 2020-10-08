@@ -1,1 +1,2 @@
-export { Contacts } from './container';
+import Contacts from './container'
+export  {Contacts}  

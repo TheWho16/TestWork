@@ -1,9 +1,11 @@
-import getAllUserAction from './actions'
 import reducerUSER from './reducer'
 
-import {getAllUserThunk} from './actions'
+import { getAllUserThunk, getAllUserTableThunk, getStatistikThunk, getFilterThunk } from './actions'
+
 export {
-  getAllUserAction,
   reducerUSER,
-  getAllUserThunk
+  getAllUserThunk,
+  getAllUserTableThunk,
+  getStatistikThunk,
+  getFilterThunk
 }

@@ -1,0 +1,15 @@
+.thumbnail_avatar {
+    border-radius: 100px;
+}
+
+.country_paragraph {
+    display: flex;
+}
+
+.table_wrap {
+    .ant-table-pagination-right {
+        top     : 534px;
+        position: inherit;
+        z-index : 1;
+    }
+}

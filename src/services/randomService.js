@@ -1,3 +1,6 @@
+import reqwest from 'reqwest';
+
+
 export default class RandomServise {
     _apiBase = 'https://randomuser.me/api';
 
@@ -11,14 +14,60 @@ export default class RandomServise {
         return await res.json();
     }
 
-    getAllPeople = async (page = 3, results=6) => {
-        // const res = await this.getResourse(`?page=3&results=6&seed=abc`);
-        const res = await this.getResourse(`?page=${page}&results=${results}&seed=abc`);
-
-        console.log(page, results)
+    getAllPeople = async (page, size) => {
+        const res = await this.getResourse(`?page=${page}&results=${size}&seed=abc`);
         return res.results.map(this._transformPerson);
-
     }
+
+
+    getRandomuserParams = params => {
+        console.log(params.pagination, 'getRandomuserParams')
+        const pageSize = params.pagination.pageSize
+        console.log('pageSize', pageSize)
+        return {
+            results: pageSize,
+            page: params.pagination.page,
+            ...params,
+        };
+    };
+
+    getFilterPeople = async ({gender, name, nat}) => {
+        const res = await this.getResourse(`?inc=${gender},${name},${nat}`);
+        return res.results.map(this._transformPerson);
+    }
+
+    getStatistick = async () => {
+        const res = await this.getResourse(`?results=255&seed=abc`);
+        return res.results.map(this._transformStatistick);
+    }
+
+    getAllPeopleTable = async (params = {}) => {
+        let dataUser = null
+        console.log('paramsServise', params)
+        await reqwest({
+            url: `https://randomuser.me/api`,
+            method: 'get',
+            type: 'json',
+            data: this.getRandomuserParams(params),
+        }).then(data => {
+            console.log('dataServise', data.results)
+            return dataUser = {
+                data: data.results,
+                pagination: {
+                    ...params.pagination,
+                    total: 200,
+                    // 200 is mock data, you should read it from server
+                    // total: data.totalCount,
+                },
+            };
+        }).catch((err) => {
+            console.log(err.status)
+        })
+        console.log('paramsServise', dataUser)
+        return dataUser
+    };
+
+
 
     _transformPerson = (person) => {
         return {
@@ -33,7 +82,16 @@ export default class RandomServise {
             userState: person.location.state,
             city: person.location.city,
             street: person.location.street,
-            age: person.registered.age
+            age: person.registered.age,
+            nat: person.nat
+        }
+    }
+
+    _transformStatistick = (person) => {
+        return {
+            id: person.id.value,
+            gender: person.gender,
+            nat: person.nat,
         }
     }
 }
